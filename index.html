@@ -1247,7 +1247,7 @@ let modalQty=1, modalP=null;
 function modalHtml(p){
   const v=p.v[vIdx(p)], c=catById(p.cat), kg=v[0]?v[1]/(v[0]/1000):null;
   return `${closeBtn()}
-   <div class="pic">${promoMedia(p)}</div>
+   <div class="pic">${media(p)}</div>
    <div class="info">
      <button class="chip" type="button" data-cat="${c.id}" style="align-self:flex-start">${esc(L(c))}</button>
      <h3 id="mTitle">${esc(L(p))}</h3>
