@@ -577,7 +577,7 @@ nav.bottom .dot2{position:absolute;top:4px;inset-inline-start:calc(50% + 6px);ba
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
 }
 /* Product photography in promotional cards. */
-.slide .art img,.trio img,.tile .pic img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:contain;background:#fff;border-radius:14px;filter:drop-shadow(0 12px 16px rgba(0,0,0,.2))}
+.slide .art img,.trio img,.tile .pic img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:contain;background:transparent;border-radius:0;filter:drop-shadow(0 12px 16px rgba(0,0,0,.2))}
 .tile .pic{bottom:12px;inset-inline-end:12px;width:38%}
 </style>
 </head>
@@ -955,6 +955,7 @@ function storeBlock(){
       <div class="btnrow"><a class="btn primary" href="${maps}" target="_blank" rel="noopener">${ICON.pin} ${t("maps")}</a></div>
     </div></section>`;
 }
+const promoMedia = p => media({...p,img:p.img.replace(/\.jpg$/, "-cutout.png")});
 function renderHome(){
   const pist=["KR005","KR003","KR004"].map(id=>byId[id]);
   const zer=byId.KR009, ahmad=byId.KR010, kashk=byId.KR013, open=isOpen();
@@ -963,16 +964,16 @@ function renderHome(){
   <div class="hero">
     <div class="carousel" id="car" aria-roledescription="carousel">
       <div class="slides" id="slides">
-        ${slide("is-active",`<canvas id="girih" aria-hidden="true"></canvas><div class="trio">${["KR001","KR010","KR008"].map(id=>`<div>${media(byId[id])}</div>`).join("")}</div>`,"s1e","s1t","s1p",`<button class="cta" style="--d:3" type="button" data-cat="fruttasecca">${t("s1c")} ${ICON.arrow}</button>`)}
-        ${slide("s-pist",`<div class="trio">${pist.map(p=>`<div>${media(p)}</div>`).join("")}</div>`,"s2e","s2t","s2p",`<button class="cta" style="--d:3" type="button" data-cat="fruttasecca">${t("s2c")} ${ICON.arrow}</button>`)}
-        ${slide("s-zer",`<div class="art">${media(zer)}</div>`,"s3e","s3t","s3p",`<button class="cta" style="--d:3" type="button" data-open="${zer.id}">${t("s3c")} ${ICON.arrow}</button>`)}
+        ${slide("is-active",`<canvas id="girih" aria-hidden="true"></canvas><div class="trio">${["KR001","KR010","KR008"].map(id=>`<div>${promoMedia(byId[id])}</div>`).join("")}</div>`,"s1e","s1t","s1p",`<button class="cta" style="--d:3" type="button" data-cat="fruttasecca">${t("s1c")} ${ICON.arrow}</button>`)}
+        ${slide("s-pist",`<div class="trio">${pist.map(p=>`<div>${promoMedia(p)}</div>`).join("")}</div>`,"s2e","s2t","s2p",`<button class="cta" style="--d:3" type="button" data-cat="fruttasecca">${t("s2c")} ${ICON.arrow}</button>`)}
+        ${slide("s-zer",`<div class="art">${promoMedia(zer)}</div>`,"s3e","s3t","s3p",`<button class="cta" style="--d:3" type="button" data-open="${zer.id}">${t("s3c")} ${ICON.arrow}</button>`)}
         ${slide("s-ship",`<div class="art">${shipArt()}</div>`,"s4e","s4t","s4p",`<button class="cta" style="--d:3" type="button" data-info="1">${t("s4c")} ${ICON.arrow}</button>`)}
       </div>
       <div class="car-ui"><div class="dots" id="dots">${[0,1,2,3].map(i=>`<button class="dot" type="button" data-slide="${i}" aria-label="${digits(i+1)} / ${digits(4)}" aria-current="${i===0}"><i></i></button>`).join("")}</div>
         <div class="arrows"><button type="button" data-car="-1" aria-label="${t("prev")}">${ICON.left}</button><button type="button" data-car="1" aria-label="${t("next")}">${ICON.right}</button></div></div>
     </div>
     <div class="hero-side">
-      <button class="tile t-tea" type="button" data-cat="te"><span class="pic">${media(ahmad)}</span><span class="eyebrow">${t("teaE")}</span><h3>${t("teaT")}</h3><span class="go">${t("go")} ${ICON.arrow}</span></button>
+      <button class="tile t-tea" type="button" data-cat="te"><span class="pic">${promoMedia(ahmad)}</span><span class="eyebrow">${t("teaE")}</span><h3>${t("teaT")}</h3><span class="go">${t("go")} ${ICON.arrow}</span></button>
       <a class="tile t-shop" href="#store" data-store="1"><span class="storefront">${storefront()}</span><span class="eyebrow">${t("shopE")}</span><h3>${t("shopT")}</h3><span class="open${open?"":" closed"}"><i></i>${open?t("openNow"):t("closedNow")}</span></a>
     </div>
   </div>
@@ -1252,7 +1253,7 @@ let modalQty=1, modalP=null;
 function modalHtml(p){
   const v=p.v[vIdx(p)], c=catById(p.cat), kg=v[0]?v[1]/(v[0]/1000):null;
   return `${closeBtn()}
-   <div class="pic">${media(p)}</div>
+   <div class="pic">${promoMedia(p)}</div>
    <div class="info">
      <button class="chip" type="button" data-cat="${c.id}" style="align-self:flex-start">${esc(L(c))}</button>
      <h3 id="mTitle">${esc(L(p))}</h3>
