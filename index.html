@@ -958,7 +958,7 @@ function storeBlock(){
 const promoMedia = p => media({...p,img:p.img.replace(/\.jpg$/, "-cutout.png")});
 function renderHome(){
   const pist=["KR005","KR003","KR004"].map(id=>byId[id]);
-  const zer=byId.KR009, ahmad=byId.KR010, kashk=byId.KR013, open=isOpen();
+  const zer=byId.KR009, ahmad=byId.KR010, open=isOpen();
   const slide=(cls,art,e,h,p,cta)=>`<div class="slide ${cls}" aria-roledescription="slide">${art}<div class="copy"><span class="eyebrow" style="--d:0">${t(e)}</span><h2 style="--d:1">${t(h)}</h2><p style="--d:2">${t(p)}</p>${cta}</div></div>`;
   $("#view").innerHTML = `
   <div class="hero">
@@ -981,13 +981,7 @@ function renderHome(){
     ${[["pin","f1","f1s"],["clock","f2","f2s"],["truck","f3","f3s"],["ret","f4","f4s"]].map(([ic,a,b])=>`<div class="fact">${ICON[ic]}<p><b>${t(a)}</b>${t(b)}</p></div>`).join("")}
   </div>
   ${shelf("fruttasecca",t("dried"),t("driedSub"),inCat("fruttasecca"))}
-  <section class="shelf reveal"><div class="duo">
-    <div><div class="shelf-head"><h3>${t("tea")}<small>${t("teaSub")}</small></h3><button class="linkbtn" type="button" data-cat="te">${t("seeAll")} ${ICON.arrow}</button></div>
-      <div class="grid3">${inCat("te").map(card).join("")}</div></div>
-    <div class="spot"><span class="eyebrow">${t("kashkE")} · ${t("fromIran")}</span><h3>${esc(L(kashk))}</h3><p>${esc(L(kashk.d))}</p>
-      <button class="pic" type="button" data-open="${kashk.id}" aria-label="${esc(L(kashk))}">${media(kashk)}</button>
-      <div class="row"><div><b>${money(kashk.v[0][1])}</b><small>${esc(sizeLbl(kashk.v[0][0]))}</small></div>${ctl(kashk.id+"|0")}</div></div>
-  </div></section>
+  ${shelf("te",t("tea"),t("teaSub"),inCat("te"))}
   <section class="instore reveal"><div><h3>${t("instoreT")}</h3><p>${t("instoreP")}</p></div>
     <div class="mini-cats">${CATS.filter(c=>!inCat(c.id).length).map(c=>`<button class="mc" type="button" data-cat="${c.id}">${catIcon(c.id)}<span>${esc(L(c))}</span></button>`).join("")}</div></section>
   ${storeBlock()}`;
