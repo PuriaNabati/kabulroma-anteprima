@@ -964,7 +964,7 @@ function renderHome(){
   <div class="hero">
     <div class="carousel" id="car" aria-roledescription="carousel">
       <div class="slides" id="slides">
-        ${slide("is-active",`<canvas id="girih" aria-hidden="true"></canvas><div class="trio">${["KR001","KR010","KR008"].map(id=>`<div>${promoMedia(byId[id])}</div>`).join("")}</div>`,"s1e","s1t","s1p",`<button class="cta" style="--d:3" type="button" data-cat="fruttasecca">${t("s1c")} ${ICON.arrow}</button>`)}
+        ${slide("is-active",`<canvas id="girih" aria-hidden="true"></canvas><div class="trio">${["KR001","KR004","KR008"].map(id=>`<div>${promoMedia(byId[id])}</div>`).join("")}</div>`,"s1e","s1t","s1p",`<button class="cta" style="--d:3" type="button" data-cat="fruttasecca">${t("s1c")} ${ICON.arrow}</button>`)}
         ${slide("s-pist",`<div class="trio">${pist.map(p=>`<div>${promoMedia(p)}</div>`).join("")}</div>`,"s2e","s2t","s2p",`<button class="cta" style="--d:3" type="button" data-cat="fruttasecca">${t("s2c")} ${ICON.arrow}</button>`)}
         ${slide("s-zer",`<div class="art">${promoMedia(zer)}</div>`,"s3e","s3t","s3p",`<button class="cta" style="--d:3" type="button" data-open="${zer.id}">${t("s3c")} ${ICON.arrow}</button>`)}
         ${slide("s-ship",`<div class="art">${shipArt()}</div>`,"s4e","s4t","s4p",`<button class="cta" style="--d:3" type="button" data-info="1">${t("s4c")} ${ICON.arrow}</button>`)}
